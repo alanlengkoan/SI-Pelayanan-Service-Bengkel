@@ -6,112 +6,65 @@
     <!-- begin:: form -->
     <section class="panel">
         <header class="panel-heading">
-            <div class="panel-actions">
-                <a href="#" class="fa fa-caret-down"></a>
-                <a href="#" class="fa fa-times"></a>
-            </div>
-
             <h2 class="panel-title">Form</h2>
         </header>
         <div class="panel-body">
-            <form action="aksi/?aksi=evaluasi_add" id="form-add" class="form-horizontal">
-                <!-- begin:: id -->
-                <input type="hidden" name="inpiddata" id="inpiddata">
-                <!-- end:: id -->
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Jenis Pohon *</label>
-                    <div class="col-sm-8">
-                        <select class="form-control" name="inpidresponden" id="inpidresponden">
-                            <option value="">- Pilih -</option>
-                            <?php
-                            $query1 = $pdo->GetAll('tb_responden', 'id_responden');
-                            while ($row = $query1->fetch(PDO::FETCH_OBJ)) { ?>
-                                <option value="<?= $row->id_responden ?>"><?= $row->responden ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </div>
-                <?php
-                $query2 = $pdo->GetAll('tb_atribut', 'id_atribut');
-                while ($row = $query2->fetch(PDO::FETCH_OBJ)) { ?>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label"><?= $row->atribut ?> *</label>
-                        <div class="col-sm-8">
-                            <input type="hidden" name="inpidkriteria[]" value="<?= $row->id_atribut ?>" readonly="readonly" />
-                            <select class="form-control" name="inpnilai[]" id="inpnilai">
-                                <option value="">- Pilih <?= $row->atribut ?> -</option>
-                                <?php
-                                $sql    = "SELECT * FROM tb_parameter WHERE id_atribut = '$row->id_atribut'";
-                                $query3 = $pdo->Query($sql);
-                                while ($row = $query3->fetch(PDO::FETCH_OBJ)) { ?>
-                                    <option value="<?= $row->nilai ?>"><?= $row->parameter ?></option>
-                                <?php } ?>
-                            </select>
+            <div class="row">
+                <div class="col-lg-6">
+                    <form action="aksi/?aksi=evaluasi_save" id="form-add-upd" class="form-horizontal" method="post">
+                        <!-- begin:: id -->
+                        <input type="hidden" name="inpidevaluasi" id="inpidevaluasi">
+                        <!-- end:: id -->
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Awal&nbsp;*</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="inpawal" id="inpawal">
+                                    <option value="">- Pilih -</option>
+                                    <?php
+                                    $query1 = $pdo->GetAll('tb_bengkel', 'id_bengkel');
+                                    while ($row = $query1->fetch(PDO::FETCH_OBJ)) { ?>
+                                        <option value="<?= $row->id_bengkel ?>" data-lat="<?= $row->latitude ?>" data-long="<?= $row->longitude ?>"><?= $row->nama ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                <?php } ?>
-                <div class="text-center">
-                    <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i> Reset</button>&nbsp;
-                    <button type="submit" class="btn btn-primary" name="add" id="add"><i class="fa fa-plus"></i> Add</button>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Akhir&nbsp;*</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="inpakhir" id="inpakhir">
+                                    <option value="">- Pilih -</option>
+                                    <?php
+                                    $query2 = $pdo->GetAll('tb_bengkel', 'id_bengkel');
+                                    while ($row = $query2->fetch(PDO::FETCH_OBJ)) { ?>
+                                        <option value="<?= $row->id_bengkel ?>" data-lat="<?= $row->latitude ?>" data-long="<?= $row->longitude ?>"><?= $row->nama ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Jarak&nbsp;*</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="inpjarak" id="inpjarak" placeholder="Masukkan jarak" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i> Reset</button>&nbsp;
+                            <button type="submit" class="btn btn-primary" name="add" id="add"><i class="fa fa-plus"></i> Add</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+                <div class="col-lg-6">
+                    <div id="map" style="height: 400px;"></div>
+                </div>
+            </div>
         </div>
     </section>
     <!-- end:: form -->
 
-    <?php
-    // untuk mengambil data atribut
-    $qryAtribut = $pdo->GetAll('tb_atribut', 'id_atribut');
-    $atribut = [];
-    while ($row = $qryAtribut->fetch(PDO::FETCH_OBJ)) {
-        $atribut[$row->id_atribut] = $row->atribut;
-    }
-
-    // untuk mengambil data responden / jenis pohon
-    $qryResponden = $pdo->GetAll('tb_responden', 'id_responden');
-    $responden = [];
-    while ($row = $qryResponden->fetch(PDO::FETCH_OBJ)) {
-        $responden[$row->id_responden] = $row->responden;
-    }
-
-    // untuk mengambil data parameter
-    $sqlParameter = "SELECT * FROM tb_parameter ORDER BY id_atribut, id_parameter";
-    $qryParameter = $pdo->Query($sqlParameter);
-    $parameter = [];
-    while ($row = $qryParameter->fetch(PDO::FETCH_OBJ)) {
-        $parameter[$row->id_atribut][$row->nilai] = $row->parameter;
-    }
-
-    // untuk ambil data training
-    $sqlData = "SELECT tb_data.id_responden, tb_data.count FROM tb_data GROUP BY tb_data.count, tb_data.id_responden ORDER BY tb_data.id_responden";
-    $qryData = $pdo->Query($sqlData);
-    $data = [];
-    while ($row = $qryData->fetch(PDO::FETCH_OBJ)) {
-        $sqlDetail = "SELECT tb_data.count, tb_data.id_responden, tb_data.id_atribut, tb_data.nilai FROM tb_data WHERE tb_data.count = '$row->count' AND tb_data.id_responden = '$row->id_responden'";
-        $qryDetail = $pdo->Query($sqlDetail);
-        while ($rows = $qryDetail->fetch(PDO::FETCH_OBJ)) {
-            $getAtribut[$row->id_responden][$row->count][] = [
-                'nilai' => $parameter[$rows->id_atribut][$rows->nilai]
-            ];
-        }
-
-        $data[] = [
-            'id_responden' => $row->id_responden,
-            'count'        => $row->count,
-            'jenis_pohon'  => $responden[$row->id_responden],
-            'atribut'      => $getAtribut[$row->id_responden][$row->count]
-        ];
-    }
-    ?>
-
     <!-- begin:: tabel -->
     <section class="panel">
         <header class="panel-heading">
-            <div class="panel-actions">
-                <a href="#" class="fa fa-caret-down"></a>
-                <a href="#" class="fa fa-times"></a>
-            </div>
-
             <h2 class="panel-title">Tabel</h2>
         </header>
         <div class="panel-body">
@@ -119,28 +72,30 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Jenis Pohon</th>
-                        <?php foreach ($atribut as $key => $row) { ?>
-                            <th><?= $row ?></th>
-                        <?php } ?>
+                        <th>Awal</th>
+                        <th>Akhir</th>
+                        <th>Jarak</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
+                    $query  = $pdo->GetAll('tb_evaluasi', 'id_evaluasi');
+                    $jumlah = $query->rowCount();
                     $no = 1;
-                    foreach ($data as $key => $value) { ?>
-                        <tr>
-                            <td><?= $no++ ?></td>
-                            <td><?= $value['jenis_pohon'] ?></td>
-                            <?php foreach ($value['atribut'] as $row) { ?>
-                                <td><?= $row['nilai'] ?></td>
-                            <?php } ?>
-                            <td align="center">
-                                <button id="upd" class="btn btn-primary btn-sm" data-id="<?= $value['id_responden'] ?>" data-count="<?= $value['count'] ?>"><i class="fa fa-edit"></i> Ubah</button>&nbsp;
-                                <button id="del" class="btn btn-danger btn-sm" data-id="<?= $value['id_responden'] ?>" data-count="<?= $value['count'] ?>"><i class="fa fa-trash-o"></i> Hapus</button>
-                            </td>
-                        </tr>
+                    if ($jumlah > 0) {
+                        while ($row = $query->fetch(PDO::FETCH_OBJ)) { ?>
+                            <tr>
+                                <td><?= $no++; ?></td>
+                                <td><?= $row->awal; ?></td>
+                                <td><?= $row->akhir; ?></td>
+                                <td><?= $row->jarak ?></td>
+                                <td align="center">
+                                    <button class="btn btn-primary btn-sm" id="upd" data-id="<?= $row->id_evaluasi ?>"><i class="fa fa-edit"></i></button>&nbsp;
+                                    <button class="btn btn-danger btn-sm" id="del" data-id="<?= $row->id_evaluasi ?>"><i class="fa fa-trash-o"></i></button>
+                                </td>
+                            </tr>
+                        <?php } ?>
                     <?php } ?>
                 </tbody>
             </table>

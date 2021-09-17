@@ -17,44 +17,32 @@
                     <ul class="nav nav-main">
                         <li class="<?= ($_REQUEST['content'] == "dashboard") ? 'nav-active' : '' ?>">
                             <a href="dashboard">
-                                <i class="fa fa-home" aria-hidden="true"></i>
+                                <i class="fa fa-circle" aria-hidden="true"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         <li class="<?= ($_REQUEST['content'] == "users") ? 'nav-active' : '' ?>">
                             <a href="users">
-                                <i class="fa fa-users" aria-hidden="true"></i>
+                                <i class="fa fa-circle" aria-hidden="true"></i>
                                 <span>Users</span>
                             </a>
                         </li>
-                        <li class="<?= ($_REQUEST['content'] == "jenis_pohon") ? 'nav-active' : '' ?>">
-                            <a href="jenis_pohon">
-                                <i class="fa fa-leaf" aria-hidden="true"></i>
-                                <span>Jenis Tanaman</span>
-                            </a>
-                        </li>
-                        <li class="<?= ($_REQUEST['content'] == "kriteria") ? 'nav-active' : '' ?>">
-                            <a href="kriteria">
-                                <i class="fa fa-asterisk" aria-hidden="true"></i>
-                                <span>Kriteria</span>
-                            </a>
-                        </li>
-                        <li class="<?= ($_REQUEST['content'] == "bobot") ? 'nav-active' : '' ?>">
-                            <a href="bobot">
-                                <i class="fa fa-list" aria-hidden="true"></i>
-                                <span>Bobot</span>
+                        <li class="<?= ($_REQUEST['content'] == "bengkel") ? 'nav-active' : '' ?>">
+                            <a href="bengkel">
+                                <i class="fa fa-circle" aria-hidden="true"></i>
+                                <span>Bengkel</span>
                             </a>
                         </li>
                         <li class="<?= ($_REQUEST['content'] == "evaluasi") ? 'nav-active' : '' ?>">
                             <a href="evaluasi">
-                                <i class="fa fa-check" aria-hidden="true"></i>
-                                <span>Basis Pengetahuan</span>
+                                <i class="fa fa-circle" aria-hidden="true"></i>
+                                <span>Evaluasi</span>
                             </a>
                         </li>
-                        <li class="<?= ($_REQUEST['content'] == "laporan") ? 'nav-active' : '' ?>">
-                            <a href="laporan">
-                                <i class="fa fa-file" aria-hidden="true"></i>
-                                <span>Laporan</span>
+                        <li class="<?= ($_REQUEST['content'] == "algoritma") ? 'nav-active' : '' ?>">
+                            <a href="algoritma">
+                                <i class="fa fa-circle" aria-hidden="true"></i>
+                                <span>Algoritma</span>
                             </a>
                         </li>
                     </ul>

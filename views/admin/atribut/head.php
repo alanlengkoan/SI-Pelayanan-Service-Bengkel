@@ -18,6 +18,14 @@
     <link rel="stylesheet" href="../../assets/admin/vendor/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="../../assets/admin/vendor/magnific-popup/magnific-popup.css" />
 
+    <style>
+        .parsley-errors-list {
+            color: red;
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+
     <?php
     $content = (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $_REQUEST['content'])) ? str_replace('-', '_', $_REQUEST['content']) : $_REQUEST['content'];
     if (file_exists('css/' . $content . '.php')) {

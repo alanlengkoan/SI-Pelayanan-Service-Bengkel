@@ -1,8 +1,9 @@
 <?php
-$id_responden = $_POST['id_responden'];
-$count = $_POST['count'];
-
-$sql = "DELETE FROM tb_data WHERE tb_data.count = '$count' AND tb_data.id_responden = '$id_responden'";
-$delete  = $pdo->Query($sql);
-
-exit(json_encode(array('title' => 'Berhasil!', 'text' => 'Data telah dihapus.', 'type' => 'success', 'button' => 'Ok!')));
+$id = $_POST['id'];
+// untuk fungsi delete parameternya (nama_tabel, id, id_value)
+$delete = $pdo->Delete("tb_evaluasi", "id_evaluasi", $id);
+if ($delete == 1) {
+    exit(json_encode(array('title' => 'Berhasil!', 'text' => 'Data telah dihapus!', 'type' => 'success', 'button' => 'Ok!')));
+} else {
+    exit(json_encode(array('title' => 'Gagal!', 'text' => 'Data tidak dapat dihapus!', 'type' => 'error', 'button' => 'Ok!')));
+}

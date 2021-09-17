@@ -18,7 +18,7 @@
                                 <h4 class="title">Jenis Tanaman</h4>
                                 <div class="info">
                                     <?php
-                                    $query = $pdo->GetAll('tb_responden', 'id_responden');
+                                    $query = $pdo->GetAll('tb_bengkel', 'id_bengkel');
                                     $jml_jenis_tanaman = $query->rowCount();
                                     ?>
                                     <strong class="amount"><?= $jml_jenis_tanaman ?></strong>
@@ -43,7 +43,7 @@
                                 <h4 class="title">Users</h4>
                                 <div class="info">
                                     <?php
-                                    $query = $pdo->GetAll('tb_member', 'id_member');
+                                    $query = $pdo->GetAll('tb_users', 'id_users');
                                     $jml_users = $query->rowCount();
                                     ?>
                                     <strong class="amount"><?= $jml_users ?></strong>

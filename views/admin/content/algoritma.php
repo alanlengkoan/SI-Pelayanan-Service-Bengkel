@@ -1,46 +1,44 @@
 <?php
-// untuk mengambil data atribut
-$qryAtribut = $pdo->GetAll('tb_atribut', 'id_atribut');
-$atribut = [];
-while ($row = $qryAtribut->fetch(PDO::FETCH_OBJ)) {
-    $atribut[$row->id_atribut] = $row->atribut;
-}
+// ambil data bengkel
+$qry_bengkel = $pdo->GetAll('tb_bengkel', 'id_bengkel');
+$get = [];
+while ($row = $qry_bengkel->fetch(PDO::FETCH_OBJ)) {
+    $id_bengkel = $row->id_bengkel;
 
-// untuk mengambil data responden / jenis pohon
-$qryResponden = $pdo->GetAll('tb_responden', 'id_responden');
-$responden = [];
-while ($row = $qryResponden->fetch(PDO::FETCH_OBJ)) {
-    $responden[$row->id_responden] = $row->responden;
-}
-
-// untuk mengambil data parameter
-$sqlParameter = "SELECT * FROM tb_parameter ORDER BY id_atribut, id_parameter";
-$qryParameter = $pdo->Query($sqlParameter);
-$parameter = [];
-while ($row = $qryParameter->fetch(PDO::FETCH_OBJ)) {
-    $parameter[$row->id_atribut][$row->nilai] = $row->parameter;
-}
-
-// untuk ambil data training
-$sqlData = "SELECT tb_data.id_responden, tb_data.count FROM tb_data GROUP BY tb_data.count, tb_data.id_responden ORDER BY tb_data.id_responden";
-$qryData = $pdo->Query($sqlData);
-$data = [];
-while ($row = $qryData->fetch(PDO::FETCH_OBJ)) {
-    $sqlDetail = "SELECT tb_data.count, tb_data.id_responden, tb_data.id_atribut, tb_data.nilai FROM tb_data WHERE tb_data.count = '$row->count' AND tb_data.id_responden = '$row->id_responden'";
-    $qryDetail = $pdo->Query($sqlDetail);
-    while ($rows = $qryDetail->fetch(PDO::FETCH_OBJ)) {
-        $getAtribut[$row->id_responden][$row->count][$rows->id_atribut] = [
-            'label' => $parameter[$rows->id_atribut][$rows->nilai],
-            'nilai' => $rows->nilai,
-        ];
+    // ambil data evaluasi
+    $qry_evaluasi  = $pdo->GetWhere('tb_evaluasi', 'awal', $id_bengkel);
+    while ($value = $qry_evaluasi->fetch(PDO::FETCH_OBJ)) {
+        $get[$value->awal][$value->akhir] = $value->jarak;
     }
+}
 
-    $data[] = [
-        'id_responden' => $row->id_responden,
-        'count'        => $row->count,
-        'jenis_pohon'  => $responden[$row->id_responden],
-        'atribut'      => $getAtribut[$row->id_responden][$row->count]
-    ];
+/*
+keterangan
+i = baris => $i
+j = kolom => $j
+*/
+$h = [];
+$e = [];
+for ($i = 1; $i <= count($get); $i++) {
+    for ($j = 1; $j <= count($get); $j++) {
+        if ($i === $j) {
+            $h[$i][$j] = 0;
+            $e[$i][$j] = 0;
+        } else {
+            $h[$i][$j] = ($get[$i][$j] ?? INF);
+            $e[$i][$j] = ($get[$i][$j] ?? INF);
+        }
+    }
+}
+
+$result = [];
+for ($k = 1; $k <= count($h); $k++) {
+    for ($i = 1; $i <= count($h); $i++) {
+        for ($j = 1; $j <= count($h); $j++) {
+            $h[$i][$j] = min($h[$i][$j], ($h[$i][$k] + $h[$k][$j]));
+        }
+    }
+    $result[$k] = $h;
 }
 ?>
 
@@ -52,91 +50,26 @@ while ($row = $qryData->fetch(PDO::FETCH_OBJ)) {
     <!-- begin:: tabel -->
     <section class="panel">
         <header class="panel-heading">
-            <div class="panel-actions">
-                <a href="#" class="fa fa-caret-down"></a>
-                <a href="#" class="fa fa-times"></a>
-            </div>
-
-            <h2 class="panel-title">Tabel : Data Training</h2>
+            <h2 class="panel-title">X0</h2>
         </header>
         <div class="panel-body">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-condensed mb-none">
                     <thead>
                         <tr>
-                            <th>No.</th>
-                            <?php foreach ($atribut as $key => $row) { ?>
-                                <th><?= $row ?></th>
+                            <th>#</th>
+                            <?php for ($a = 1; $a <= count($get); $a++) { ?>
+                                <th><?= $a ?></th>
                             <?php } ?>
-                            <th>Jenis Pohon (Kelas)</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        $no = 1;
-                        foreach ($data as $key => $value) { ?>
+                        <?php for ($a = 1; $a <= count($get); $a++) { ?>
                             <tr>
-                                <td><?= $no++ ?></td>
-                                <?php foreach ($value['atribut'] as $row) { ?>
-                                    <td><?= $row['label'] ?></td>
+                                <td><?= $a ?></td>
+                                <?php for ($b = 1; $b <= count($get); $b++) { ?>
+                                    <td><?= (is_infinite($e[$a][$b]) ? '&infin;' : $e[$a][$b]) ?></td>
                                 <?php } ?>
-                                <td><?= $value['jenis_pohon'] ?></td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-    <?php
-    // ambil kelas
-    foreach ($data as $keyData => $valueData) {
-        // untuk kelas
-        foreach ($responden as $keyResponden => $valueResponden) {
-            if ($valueData['id_responden'] === $keyResponden) {
-                $kelas[$valueResponden][] = $valueData['jenis_pohon'];
-            }
-        }
-    }
-
-    // untuk atribut
-    foreach ($data as $keyData => $valueData) {
-        foreach ($kelas as $keyKelas => $valueKelas) {
-            for ($i = 1; $i <= count($atribut); $i++) {
-                if ($valueData['jenis_pohon'] === $keyKelas && $valueData['atribut'][$i]['label'] === $parameter[$i][$valueData['atribut'][$i]['nilai']]) {
-                    $freg[$i][$keyKelas][$parameter[$i][$valueData['atribut'][$i]['nilai']]][] = 'test';
-                    $likehood[$i][$parameter[$i][$valueData['atribut'][$i]['nilai']]][] = 'test';
-                }
-            }
-        }
-    }
-    ?>
-
-    <section class="panel">
-        <header class="panel-heading">
-            <div class="panel-actions">
-                <a href="#" class="fa fa-caret-down"></a>
-                <a href="#" class="fa fa-times"></a>
-            </div>
-
-            <h2 class="panel-title">Tabel : Jumlah Data Kelas</h2>
-        </header>
-        <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped table-condensed mb-none">
-                    <thead>
-                        <tr>
-                            <th>Jenis Pohon (Kelas)</th>
-                            <th>Jumlah</th>
-                            <th>Total Data</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($kelas as $keyKelas => $valueKelas) { ?>
-                            <tr>
-                                <td><?= $keyKelas ?></td>
-                                <td><?= count($valueKelas) ?></td>
-                                <td><?= count($data) ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -145,33 +78,29 @@ while ($row = $qryData->fetch(PDO::FETCH_OBJ)) {
         </div>
     </section>
 
-    <?php for ($i = 1; $i <= count($atribut); $i++) { ?>
+
+    <?php for ($g = 1; $g <= count($result); $g++) { ?>
         <section class="panel">
             <header class="panel-heading">
-                <div class="panel-actions">
-                    <a href="#" class="fa fa-caret-down"></a>
-                    <a href="#" class="fa fa-times"></a>
-                </div>
-
-                <h2 class="panel-title">Tabel : Jumlah Data Atribut <?= $atribut[$i] ?></h2>
+                <h2 class="panel-title">X<?= $g ?></h2>
             </header>
             <div class="panel-body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-condensed mb-none">
                         <thead>
                             <tr>
-                                <th>Jenis Pohon (Kelas)</th>
-                                <?php foreach ($parameter[$i] as $nilai => $param) { ?>
-                                    <th><?= $param ?></th>
+                                <th>#</th>
+                                <?php for ($a = 1; $a <= count($get); $a++) { ?>
+                                    <th><?= $a ?></th>
                                 <?php } ?>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($kelas as $keyKelas => $valueKelas) { ?>
+                            <?php for ($a = 1; $a <= count($get); $a++) { ?>
                                 <tr>
-                                    <td><?= $keyKelas ?></td>
-                                    <?php foreach ($parameter[$i] as $nilai => $param) { ?>
-                                        <td><?= (empty($freg[$i][$keyKelas][$param]) ? 0 : count($freg[$i][$keyKelas][$param])) ?></td>
+                                    <td><?= $a ?></td>
+                                    <?php for ($b = 1; $b <= count($get); $b++) { ?>
+                                        <td><?= (is_infinite($result[$g][$a][$b]) ? '&infin;' : $result[$g][$a][$b]) ?></td>
                                     <?php } ?>
                                 </tr>
                             <?php } ?>
@@ -184,148 +113,10 @@ while ($row = $qryData->fetch(PDO::FETCH_OBJ)) {
 
     <section class="panel">
         <header class="panel-heading">
-            <div class="panel-actions">
-                <a href="#" class="fa fa-caret-down"></a>
-                <a href="#" class="fa fa-times"></a>
-            </div>
-
-            <h2 class="panel-title">Tabel : Probabilitas Kelas</h2>
+            <h2 class="panel-title">Hasil Akhir</h2>
         </header>
         <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped table-condensed mb-none">
-                    <thead>
-                        <tr>
-                            <th>Jenis Pohon</th>
-                            <th>Hasil</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($kelas as $keyKelas => $valueKelas) { ?>
-                            <tr>
-                                <td><?= $keyKelas ?></td>
-                                <td><?= (count($valueKelas) / count($data)) ?></td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <?php for ($i = 1; $i <= count($atribut); $i++) { ?>
-        <section class="panel">
-            <header class="panel-heading">
-                <div class="panel-actions">
-                    <a href="#" class="fa fa-caret-down"></a>
-                    <a href="#" class="fa fa-times"></a>
-                </div>
-
-                <h2 class="panel-title">Tabel : Probabilitas Atribut <?= $atribut[$i] ?></h2>
-            </header>
-            <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-condensed mb-none">
-                        <thead>
-                            <tr>
-                                <th>Jenis Pohon (Kelas)</th>
-                                <?php foreach ($parameter[$i] as $nilai => $param) { ?>
-                                    <th><?= $param ?></th>
-                                <?php } ?>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($kelas as $keyKelas => $valueKelas) { ?>
-                                <tr>
-                                    <td><?= $keyKelas ?></td>
-                                    <?php foreach ($parameter[$i] as $nilai => $param) {
-                                        $hasil_sebelum   = (empty($freg[$i][$keyKelas][$param]) ? 0 : count($freg[$i][$keyKelas][$param]));
-                                        $parameter_hasil = (empty($likehood[$i][$param]) ? 0 : count($likehood[$i][$param]));
-                                        $hasil           = ($hasil_sebelum !== 0 ? ($hasil_sebelum / $parameter_hasil) : 0);
-                                        // untuk ambil hasil akhir
-                                        $last[$keyKelas][$i][$param] = $hasil;
-                                    ?>
-                                        <td><?= $hasil ?></td>
-                                    <?php } ?>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-    <?php } ?>
-
-    <?php
-    foreach ($data as $key => $value) {
-        foreach ($kelas as $keyKelas => $valueKelas) {
-            foreach ($value['atribut'] as $keyAtribut => $row) {
-                $countDetail[$value['id_responden']][$value['count']][$keyKelas][] = $last[$keyKelas][$keyAtribut][$row['label']];
-            }
-        }
-        
-        $result[] = [
-            'id_responden' => $value['id_responden'],
-            'count'        => $countDetail[$value['id_responden']][$value['count']]
-        ];
-    }
-    ?>
-
-    <section class="panel">
-        <header class="panel-heading">
-            <div class="panel-actions">
-                <a href="#" class="fa fa-caret-down"></a>
-                <a href="#" class="fa fa-times"></a>
-            </div>
-
-            <h2 class="panel-title">Tabel : Hasil</h2>
-        </header>
-        <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped table-condensed mb-none">
-                    <thead>
-                        <tr>
-                            <th>Jenis Pohon (Kelas)</th>
-                            <?php foreach ($atribut as $key => $row) { ?>
-                                <th><?= $row ?></th>
-                            <?php } ?>
-                            <?php foreach ($atribut as $key => $row) { ?>
-                                <th><?= $row ?></th>
-                            <?php } ?>
-                            <?php foreach ($kelas as $keyKelas => $valueKelas) { ?>
-                                <th><?= $keyKelas ?></th>
-                            <?php } ?>
-                            <th>Prediksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($data as $key => $value) { ?>
-                            <tr>
-                                <td><?= $value['jenis_pohon'] ?></td>
-                                <?php foreach ($value['atribut'] as $row) { ?>
-                                    <td><?= $row['label'] ?></td>
-                                <?php } ?>
-                                <?php foreach ($value['atribut'] as $keyAtribut => $row) { ?>
-                                    <td><?= $last[$value['jenis_pohon']][$keyAtribut][$row['label']] ?></td>
-                                <?php } ?>
-                                <?php foreach ($kelas as $keyKelas => $valueKelas) {
-                                    $hitung = array_product($result[$key]['count'][$keyKelas]) * (count($valueKelas) / count($data));
-                                    $rank[$value['id_responden']][$value['count']][$keyKelas] = $hitung;
-                                ?>
-                                    <td><?= $hitung ?></td>
-                                <?php } ?>
-                                <td>
-                                    <?php
-                                    $maxVal = max($rank[$value['id_responden']][$value['count']]);
-                                    $maxValKeys = array_keys($rank[$value['id_responden']][$value['count']], $maxVal);
-                                    echo ($value['jenis_pohon'] !== $maxValKeys[0] ? '<span style="color: yellow; background-color: red">'. $maxValKeys[0].'</span>' : '<span>' . $maxValKeys[0] . '</span>');
-                                    ?>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
+            
         </div>
     </section>
     <!-- end:: tabel -->

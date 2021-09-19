@@ -2,7 +2,7 @@
 <header class="header">
   <div class="logo-container">
     <a href="dashboard" class="logo">
-      <h4>SPK Jenis Tanaman</h4>
+      <h4>Sistem Informasi Jalur Terdekat Service Bengkel</h4>
     </a>
     <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
       <i class="fa fa-bars" aria-label="Toggle sidebar"></i>

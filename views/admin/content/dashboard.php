@@ -10,12 +10,12 @@
                     <div class="widget-summary">
                         <div class="widget-summary-col widget-summary-col-icon">
                             <div class="summary-icon bg-tertiary">
-                                <i class="fa fa-tree"></i>
+                                <i class="fa fa-motorcycle"></i>
                             </div>
                         </div>
                         <div class="widget-summary-col">
                             <div class="summary">
-                                <h4 class="title">Jenis Tanaman</h4>
+                                <h4 class="title">Bengkel</h4>
                                 <div class="info">
                                     <?php
                                     $query = $pdo->GetAll('tb_bengkel', 'id_bengkel');

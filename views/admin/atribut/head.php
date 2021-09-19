@@ -8,14 +8,14 @@
     <meta name="author" content="okler.net">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>Sistem Pendukung Keputusan Jenis Tanaman</title>
+    <title>Sistem Informasi Jalur Terdekat Service Bengkel</title>
 
     <!-- icon -->
     <link rel="icon" type="image/x-icon" href="../../assets/img/logo.png">
 
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="../../assets/admin/vendor/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="../../assets/admin/vendor/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="../../assets/admin/vendor/magnific-popup/magnific-popup.css" />
 
     <style>

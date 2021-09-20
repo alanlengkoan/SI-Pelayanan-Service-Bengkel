@@ -33,7 +33,7 @@ if (!isset($_SESSION['token'])) {
 	<section class="body-sign">
 		<div class="center-sign">
 			<a href="index" class="logo pull-left">
-				<h2>SPK Jenis Tanaman</h2>
+				<h2>SI Service Bengkel Terdekat</h2>
 			</a>
 
 			<div class="panel panel-sign">
@@ -91,11 +91,8 @@ if (!isset($_SESSION['token'])) {
 							</div>
 							<div class="col-sm-4 text-right">
 								<button type="submit" id="masuk" class="btn btn-primary hidden-xs">Login</button>
-								<button type="submit" id="masuk" class="btn btn-primary btn-block btn-lg visible-xs mt-lg">Login</button>
 							</div>
 						</div>
-						<hr>
-						<p class="text-center">Belum punya akun? <a href="registrasi">Daftar disini!</a>
 					</form>
 				</div>
 			</div>
@@ -105,23 +102,23 @@ if (!isset($_SESSION['token'])) {
 				<script>
 					document.write(new Date().getFullYear());
 				</script>
-				<a href="https://alanlengkoan.netlify.app/" target="_blank"> AL</a> - Sistem Pendukung Keputusan Jenis Tanaman.
+				<a href="https://alanlengkoan.netlify.app/" target="_blank"> AL</a> - Sistem Informasi Jalur Terdekat Service Bengkel.
 			</p>
 		</div>
 	</section>
 	<!-- end: page -->
 
-	<script src="assets/vendor/jquery/jquery.js"></script>
-	<script src="assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
-	<script src="assets/vendor/bootstrap/js/bootstrap.js"></script>
-	<script src="assets/vendor/nanoscroller/nanoscroller.js"></script>
-	<script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-	<script src="assets/vendor/magnific-popup/magnific-popup.js"></script>
-	<script src="assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
-	<script src="assets/javascripts/theme.js"></script>
-	<script src="assets/javascripts/theme.custom.js"></script>
-	<script src="assets/javascripts/theme.init.js"></script>
+	<script src="../assets/admin/vendor/jquery/jquery.js"></script>
+	<script src="../assets/admin/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+	<script src="../assets/admin/vendor/bootstrap/js/bootstrap.js"></script>
+	<script src="../assets/admin/vendor/nanoscroller/nanoscroller.js"></script>
+	<script src="../assets/admin/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script src="../assets/admin/vendor/magnific-popup/magnific-popup.js"></script>
+	<script src="../assets/admin/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+	<script src="../assets/admin/javascripts/theme.js"></script>
+	<script src="../assets/admin/javascripts/theme.custom.js"></script>
+	<script src="../assets/admin/javascripts/theme.init.js"></script>
 
-</body><img src="http://www.ten28.com/fref.jpg">
+</body>
 
 </html>

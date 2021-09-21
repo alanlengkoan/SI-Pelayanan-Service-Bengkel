@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Sistem Pakar Diagnosa Buah Naga</title>
+    <title>Sistem Informasi Jalur Terdekat Service Bengkel</title>
     <!-- icon -->
     <link rel="icon" type="image/x-icon" href="../assets/img/logo.png">
 
@@ -20,4 +20,5 @@
     ?>
 
     <script rel="preload" type="text/javascript" src="../assets/landing_page/js/jquery-2.1.1.js"></script>
+
 <body>

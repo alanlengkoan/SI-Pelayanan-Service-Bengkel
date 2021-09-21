@@ -1,7 +1,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyB-JpweDJ7_cA9-KiEq-iMjQzlluOemnWo&callback=initMap"></script>
 
-
 <script>
     // untuk datatable
     $('#datatable-default').DataTable();
@@ -85,7 +84,7 @@
                                 });
                         }
                     }
-                })
+                });
             }
         });
     }();

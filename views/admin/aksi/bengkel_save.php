@@ -1,11 +1,16 @@
 <?php
 $post = $_POST;
 
+$id_oto     = $myfun->get_id_otomatis('tb_users', 'id_users');  // is users
 $node       = strip_tags($_POST['inpnode']);
 $nama       = strip_tags($_POST['inpnama']);
 $alamat     = strip_tags($_POST['inpalamat']);
 $latitude   = strip_tags($_POST['inplatitude']);
 $longitude  = strip_tags($_POST['inplongitude']);
+
+$usernm = $nama;
+$passwd = 1234567;
+$level  = 'bengkel';
 
 if (empty($post['inpidbengkel'])) {
     // untuk format foto
@@ -27,7 +32,10 @@ if (empty($post['inpidbengkel'])) {
             exit(json_encode(array('title' => 'Peringatan!', 'text' => 'Nama Gambar sudah ada silahkan diganti!', 'type' => 'warning', 'button' => 'Ok!')));
         } else {
             // untuk fungsi INSERT parameternya (nama_tabel, nama_kolom, nama_value/nama_hasil)
-            $insert = $pdo->Insert("tb_bengkel", ["node", "nama", "alamat", "gambar", "latitude", "longitude"], [$node, $nama, $alamat, $nmaGambar, $latitude, $longitude]);
+            $passhash = password_hash($passwd, PASSWORD_DEFAULT);
+            $pdo->Insert("tb_users", ["id_users", "nama", "username", "password", "level"], [$id_oto, $nama, $usernm, $passhash, $level]);
+
+            $insert = $pdo->Insert("tb_bengkel", ["id_users", "node", "nama", "alamat", "gambar", "latitude", "longitude"], [$id_oto, $node, $nama, $alamat, $nmaGambar, $latitude, $longitude]);
             if ($insert == 1) {
                 // upload gambar atau menyimpan gambar
                 move_uploaded_file($tmpGambar, "../../../assets/uploads/pohon/" . basename($nmaGambar));

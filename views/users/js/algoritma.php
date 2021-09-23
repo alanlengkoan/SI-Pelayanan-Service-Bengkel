@@ -45,7 +45,7 @@
             tujuan.push(titik);
 
             marker.addListener('click', function() {
-                infoWindow.setContent(`<h4 class="center">` + value.nama + `</h4><p><b>` + value.alamat + `</b></p><p class="center"><a href="" class="btn btn-primary btn-sm">Lihat Bengkel</a></p>`);
+                infoWindow.setContent(`<h4 class="center">` + value.nama + `</h4><p><b>` + value.alamat + `</b></p><p class="center"><a href="bengkel_detail&id_bengkel=` + value.id_bengkel + `" class="btn btn-primary btn-sm">Lihat Bengkel</a></p>`);
                 infoWindow.open(map, marker);
             });
         });

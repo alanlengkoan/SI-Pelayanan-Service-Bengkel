@@ -43,6 +43,19 @@ if ($_SESSION['token'] == $_POST['_token_form']) {
                     }
 
                     exit(json_encode(array('status' => true, 'link' => '../views/users/dashboard')));
+                } else if ($data->level == 'bengkel') {
+                    // set session
+                    $_SESSION['id_users'] = $data->id_users;
+                    $_SESSION['login']    = true;
+                    // untuk mengenerate session id
+                    session_regenerate_id();
+                    // mengecek ingat saya
+                    if ($check) {
+                        setcookie('id_users', $data->id_users, time() + 3600, '/', $_SERVER['SERVER_NAME']);
+                        setcookie('key', $_SESSION['token'], time() + 3600, '/', $_SERVER['SERVER_NAME']);
+                    }
+
+                    exit(json_encode(array('status' => true, 'link' => '../views/bengkel/dashboard')));
                 }
             } else {
                 exit(json_encode(array('title' => 'Gagal!', 'text' => 'Username atau Password yang Anda masukkan Salah!', 'type' => 'error', 'button' => 'Sip!')));

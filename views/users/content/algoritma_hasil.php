@@ -1,5 +1,4 @@
 <?php
-
 // ambil data bengkel
 $qry_bengkel = $pdo->GetAll('tb_bengkel', 'id_bengkel');
 $tujuan = [];
@@ -191,6 +190,38 @@ for ($k = 0; $k < count($h); $k++) {
             $id    = array_keys($tujuan_terdekat, min($tujuan_terdekat));
             $query = $pdo->GetWhere('tb_bengkel', 'id_bengkel', $id[0]);
             $row   = $query->fetch(PDO::FETCH_OBJ);
+
+            $field = [
+                "id_bengkel",
+                "id_users",
+                "no_polisi",
+                "no_rangka",
+                "merk",
+                "tipe",
+                "tahun_buat",
+                "tgl_pajak",
+                "tgl_stnk",
+                "keluhan",
+                "latitude",
+                "longitude"
+            ];
+
+            $value = [
+                $id[0],
+                $rowLog->id_users,
+                $_POST['inpnopolisi'],
+                $_POST['inpnorangka'],
+                $_POST['inpmerk'],
+                $_POST['inptipe'],
+                $_POST['inptahunbuat'],
+                $_POST['inptglpajak'],
+                $_POST['inptglstnk'],
+                $_POST['inpkeluhan'],
+                $_POST['lat'],
+                $_POST['lng'],
+            ];
+
+            $insert = $pdo->Insert("tb_pelayanan", $field, $value);
             ?>
         </header>
         <div class="panel-body">

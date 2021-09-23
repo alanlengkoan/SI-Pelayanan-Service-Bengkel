@@ -21,18 +21,6 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="<?= ($_REQUEST['content'] == "bengkel") ? 'nav-active' : '' ?>">
-                            <a href="bengkel">
-                                <i class="fa fa-circle" aria-hidden="true"></i>
-                                <span>Bengkel</span>
-                            </a>
-                        </li>
-                        <li class="<?= ($_REQUEST['content'] == "algoritma") ? 'nav-active' : '' ?>">
-                            <a href="algoritma">
-                                <i class="fa fa-circle" aria-hidden="true"></i>
-                                <span>Cari Bengkel</span>
-                            </a>
-                        </li>
                         <li class="<?= ($_REQUEST['content'] == "pelayanan") ? 'nav-active' : '' ?>">
                             <a href="pelayanan">
                                 <i class="fa fa-circle" aria-hidden="true"></i>

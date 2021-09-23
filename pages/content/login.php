@@ -91,8 +91,11 @@ if (!isset($_SESSION['token'])) {
 							</div>
 							<div class="col-sm-4 text-right">
 								<button type="submit" id="masuk" class="btn btn-primary hidden-xs">Login</button>
+								<button type="submit" id="masuk" class="btn btn-primary btn-block btn-lg visible-xs mt-lg">Login</button>
 							</div>
 						</div>
+						<hr>
+						<p class="text-center">Belum punya akun? <a href="registrasi">Daftar disini!</a>
 					</form>
 				</div>
 			</div>

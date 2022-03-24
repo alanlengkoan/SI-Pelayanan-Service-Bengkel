@@ -4,7 +4,7 @@
 */
 
 // variabel global untuk root file
-$root = $_SERVER['DOCUMENT_ROOT'] . '/project/SI-Pelayanan-Service-Bengkel/';
+$root = $_SERVER['DOCUMENT_ROOT'] . '/si/SI-Pelayanan-Service-Bengkel/';
 
 // untuk include file
 function router($file, $lokasi)

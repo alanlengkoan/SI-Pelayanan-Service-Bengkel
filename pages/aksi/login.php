@@ -42,7 +42,7 @@ if ($_SESSION['token'] == $_POST['_token_form']) {
                         setcookie('key', $_SESSION['token'], time() + 3600, '/', $_SERVER['SERVER_NAME']);
                     }
 
-                    exit(json_encode(array('status' => true, 'link' => '../views/users/dashboard')));
+                    exit(json_encode(array('status' => true, 'link' => '../views/users/index')));
                 } else if ($data->level == 'bengkel') {
                     // set session
                     $_SESSION['id_users'] = $data->id_users;

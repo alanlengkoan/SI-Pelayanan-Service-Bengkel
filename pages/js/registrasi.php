@@ -46,8 +46,8 @@
                     data: $(this).serialize(),
                     dataType: 'json',
                     beforeSend: function() {
-                        $('#add').attr('disabled', 'disabled');
-                        $('#add').html('Waiting...');
+                        $('.add').attr('disabled', 'disabled');
+                        $('.add').html('Waiting...');
                     },
                     success: function(data) {
                         console.log(data);

@@ -1,33 +1,94 @@
-    </div>
-    </section>
+</section>
 
-    <script src="../../assets/admin/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
-    <script src="../../assets/admin/vendor/bootstrap/js/bootstrap.js"></script>
-    <script src="../../assets/admin/vendor/nanoscroller/nanoscroller.js"></script>
-    <script src="../../assets/admin/vendor/select2/select2.js"></script>
+<script type="text/javascript" src="../../assets/landing_page/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../assets/landing_page/js/mega_menu.js"></script>
+<script type="text/javascript" src="../../assets/landing_page/js/jquery.appear.js"></script>
+<script type="text/javascript" src="../../assets/landing_page/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../../assets/landing_page/js/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="../../assets/landing_page/vendor/jquery.tools.min.js"></script>
+<script type="text/javascript" src="../../assets/landing_page/vendor/jquery.revolution.min.js"></script>
+<script type="text/javascript" src="../../assets/landing_page/vendor/extensions/revolution.extension.actions.min.js"></script>
+<script type="text/javascript" src="../../assets/landing_page/vendor/extensions/revolution.extension.carousel.min.js"></script>
+<script type="text/javascript" src="../../assets/landing_page/vendor/extensions/revolution.extension.kenburn.min.js"></script>
+<script type="text/javascript" src="../../assets/landing_page/vendor/extensions/revolution.extension.layeranimation.min.js"></script>
+<script type="text/javascript" src="../../assets/landing_page/vendor/extensions/revolution.extension.migration.min.js"></script>
+<script type="text/javascript" src="../../assets/landing_page/vendor/extensions/revolution.extension.navigation.min.js"></script>
+<script type="text/javascript" src="../../assets/landing_page/vendor/extensions/revolution.extension.parallax.min.js"></script>
+<script type="text/javascript" src="../../assets/landing_page/vendor/extensions/revolution.extension.slideanims.min.js"></script>
+<script type="text/javascript" src="../../assets/landing_page/js/custom.js"></script>
 
-    <!-- begin:: datatable -->
-    <script src="../../assets/admin/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
-    <script src="../../assets/admin/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
-    <script src="../../assets/admin/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
-    <!-- end:: datatable -->
+<script type="text/javascript">
+    (function(b) {
+        var a = jQuery;
+        var c;
+        a(document).ready(function() {
+            if (a("#rev_slider_2_1").revolution == undefined) {
+                revslider_showDoubleJqueryError("#rev_slider_2_1")
+            } else {
+                c = a("#rev_slider_2_1").show().revolution({
+                    sliderType: "standard",
+                    sliderLayout: "fullwidth",
+                    dottedOverlay: "none",
+                    delay: 9000,
+                    navigation: {
+                        keyboardNavigation: "off",
+                        keyboard_direction: "horizontal",
+                        mouseScrollNavigation: "off",
+                        mouseScrollReverse: "default",
+                        onHoverStop: "off",
+                        bullets: {
+                            enable: true,
+                            hide_onmobile: false,
+                            style: "hermes",
+                            hide_onleave: false,
+                            direction: "horizontal",
+                            h_align: "center",
+                            v_align: "bottom",
+                            h_offset: 0,
+                            v_offset: 50,
+                            space: 10,
+                            tmp: ""
+                        }
+                    },
+                    visibilityLevels: [1240, 1024, 778, 480],
+                    gridwidth: 1570,
+                    gridheight: 1000,
+                    lazyType: "none",
+                    shadow: 0,
+                    spinner: "spinner3",
+                    stopLoop: "off",
+                    stopAfterLoops: -1,
+                    stopAtSlide: -1,
+                    shuffle: "off",
+                    autoHeight: "off",
+                    disableProgressBar: "on",
+                    hideThumbsOnMobile: "off",
+                    hideSliderAtLimit: 0,
+                    hideCaptionAtLimit: 0,
+                    hideAllCaptionAtLilmit: 0,
+                    debugMode: false,
+                    fallbacks: {
+                        simplifyAll: "off",
+                        nextSlideOnWindowFocus: "off",
+                        disableFocusListener: false,
+                    }
+                })
+            }
+        })
+    })(jQuery);
+</script>
 
-    <script src="../../assets/admin/javascripts/theme.js"></script>
-    <script src="../../assets/admin/javascripts/theme.custom.js"></script>
-    <script src="../../assets/admin/javascripts/theme.init.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-    <?php
-    $content = (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $_REQUEST['content'])) ? str_replace('-', '_', $_REQUEST['content']) : $_REQUEST['content'];
-    if (file_exists('js/' . $content . '.php')) {
-        switch ($content) {
-            case $content:
-                include_once 'js/' . str_replace('-', '_', $content) . '.php';
-                break;
-        }
+<?php
+$content = (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $_REQUEST['content'])) ? str_replace('-', '_', $_REQUEST['content']) : $_REQUEST['content'];
+if (file_exists('js/' . $content . '.php')) {
+    switch ($content) {
+        case $content:
+            include_once 'js/' . str_replace('-', '_', $content) . '.php';
+            break;
     }
-    ?>
+}
+?>
 
-    </body>
+</body>
 
-    </html>
+</html>

@@ -49,183 +49,195 @@ for ($k = 0; $k < count($h); $k++) {
 }
 ?>
 
-<section role="main" class="content-body">
-    <header class="page-header">
-        <h2>Algoritma</h2>
-    </header>
-
-    <!-- begin:: tabel -->
-    <section class="panel">
-        <header class="panel-heading">
-            <h2 class="panel-title">X0</h2>
-        </header>
-        <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped table-condensed mb-none">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <?php for ($a = 0; $a < count($get); $a++) { ?>
-                                <th><?= $a ?></th>
-                            <?php } ?>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php for ($a = 0; $a < count($get); $a++) { ?>
-                            <tr>
-                                <td><?= $a ?></td>
-                                <?php for ($b = 0; $b < count($get); $b++) { ?>
-                                    <td><?= (is_infinite($e[$a][$b]) ? '&infin;' : $e[$a][$b]) ?></td>
-                                <?php } ?>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-
-    <?php for ($g = 0; $g < count($result); $g++) { ?>
-        <section class="panel">
-            <header class="panel-heading">
-                <h2 class="panel-title">X<?= $g ?></h2>
-            </header>
-            <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-condensed mb-none">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <?php for ($a = 0; $a < count($get); $a++) { ?>
-                                    <th><?= $a ?></th>
-                                <?php } ?>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php for ($a = 0; $a < count($get); $a++) { ?>
-                                <tr>
-                                    <td><?= $a ?></td>
-                                    <?php for ($b = 0; $b < count($get); $b++) { ?>
-                                        <td><?= (is_infinite($result[$g][$a][$b]) ? '&infin;' : $result[$g][$a][$b]) ?></td>
-                                    <?php } ?>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
+<section class="latest-blog objects-car white-bg page page-section-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="section-title">
+                    <h2>Profil</h2>
+                    <div class="separator"></div>
                 </div>
             </div>
-        </section>
-    <?php } ?>
-
-    <section class="panel">
-        <header class="panel-heading">
-            <h2 class="panel-title">Hasil Akhir</h2>
-        </header>
-        <div class="panel-body">
-            <?php
-            for ($c = 0; $c < count($get); $c++) {
-                foreach ($result[count($get) - 1] as $key => $value) {
-                    $last[$c][$key] = $result[count($get) - 1][$c][$key];
-                }
-            }
-            ?>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Lokasi</th>
-                        <th>Bobot Awal</th>
-                        <th>Bobot Akhir</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php for ($i = 0; $i < count($get); $i++) { ?>
-                        <?php
-                        foreach ($result[count($get) - 1] as $key => $value) {
-                        ?>
-                            <tr>
-                                <td><?= $i ?>, <?= $key ?></td>
-                                <td><?= $get[$i][$key] ?? 0 ?> Km</td>
-                                <td><?= $last[$i][$key] ?> Km</td>
-                            </tr>
-                        <?php } ?>
-                    <?php } ?>
-                </tbody>
-            </table>
-
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Lokasi</th>
-                        <th>Jarak (Km)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    for ($l = 0; $l < count($last); $l++) {
-                        $keys = array_keys(array_filter($last[$l]), min(array_filter($last[$l])));
-                        $result_show[$l][$keys[0]] = min(array_filter($last[$l]));
-                    }
-
-                    for ($i = 0; $i < count($result_show); $i++) { ?>
-                        <?php
-                        foreach ($result_show[$i] as $key => $value) {
-                        ?>
-                            <tr>
-                                <td><?= $i ?>, <?= $key ?></td>
-                                <td><?= $value ?></td>
-                            </tr>
-                        <?php } ?>
-                    <?php } ?>
-                </tbody>
-            </table>
         </div>
-    </section>
-    <!-- end:: tabel -->
+        <div class="blog-1">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <!-- begin:: tabel -->
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <h2 class="panel-title">X0</h2>
+                        </header>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-condensed mb-none">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <?php for ($a = 0; $a < count($get); $a++) { ?>
+                                                <th><?= $a ?></th>
+                                            <?php } ?>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php for ($a = 0; $a < count($get); $a++) { ?>
+                                            <tr>
+                                                <td><?= $a ?></td>
+                                                <?php for ($b = 0; $b < count($get); $b++) { ?>
+                                                    <td><?= (is_infinite($e[$a][$b]) ? '&infin;' : $e[$a][$b]) ?></td>
+                                                <?php } ?>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
 
-    <section class="panel">
-        <header class="panel-heading">
-            <h2 class="panel-title">Map</h2>
-            <?php
-            $id    = array_keys($tujuan_terdekat, min($tujuan_terdekat));
-            $query = $pdo->GetWhere('tb_bengkel', 'id_bengkel', $id[0]);
-            $row   = $query->fetch(PDO::FETCH_OBJ);
 
-            $field = [
-                "id_bengkel",
-                "id_users",
-                "no_polisi",
-                "no_rangka",
-                "merk",
-                "tipe",
-                "tahun_buat",
-                "tgl_pajak",
-                "tgl_stnk",
-                "keluhan",
-                "latitude",
-                "longitude"
-            ];
+                    <?php for ($g = 0; $g < count($result); $g++) { ?>
+                        <section class="panel">
+                            <header class="panel-heading">
+                                <h2 class="panel-title">X<?= $g ?></h2>
+                            </header>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped table-condensed mb-none">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <?php for ($a = 0; $a < count($get); $a++) { ?>
+                                                    <th><?= $a ?></th>
+                                                <?php } ?>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php for ($a = 0; $a < count($get); $a++) { ?>
+                                                <tr>
+                                                    <td><?= $a ?></td>
+                                                    <?php for ($b = 0; $b < count($get); $b++) { ?>
+                                                        <td><?= (is_infinite($result[$g][$a][$b]) ? '&infin;' : $result[$g][$a][$b]) ?></td>
+                                                    <?php } ?>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    <?php } ?>
 
-            $value = [
-                $id[0],
-                $rowLog->id_users,
-                $_POST['inpnopolisi'],
-                $_POST['inpnorangka'],
-                $_POST['inpmerk'],
-                $_POST['inptipe'],
-                $_POST['inptahunbuat'],
-                $_POST['inptglpajak'],
-                $_POST['inptglstnk'],
-                $_POST['inpkeluhan'],
-                $_POST['lat'],
-                $_POST['lng'],
-            ];
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <h2 class="panel-title">Hasil Akhir</h2>
+                        </header>
+                        <div class="panel-body">
+                            <?php
+                            for ($c = 0; $c < count($get); $c++) {
+                                foreach ($result[count($get) - 1] as $key => $value) {
+                                    $last[$c][$key] = $result[count($get) - 1][$c][$key];
+                                }
+                            }
+                            ?>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Lokasi</th>
+                                        <th>Bobot Awal</th>
+                                        <th>Bobot Akhir</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php for ($i = 0; $i < count($get); $i++) { ?>
+                                        <?php
+                                        foreach ($result[count($get) - 1] as $key => $value) {
+                                        ?>
+                                            <tr>
+                                                <td><?= $i ?>, <?= $key ?></td>
+                                                <td><?= $get[$i][$key] ?? 0 ?> Km</td>
+                                                <td><?= $last[$i][$key] ?> Km</td>
+                                            </tr>
+                                        <?php } ?>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
 
-            $insert = $pdo->Insert("tb_pelayanan", $field, $value);
-            ?>
-        </header>
-        <div class="panel-body">
-            <div id="map" style="height: 400px;"></div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Lokasi</th>
+                                        <th>Jarak (Km)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for ($l = 0; $l < count($last); $l++) {
+                                        $keys = array_keys(array_filter($last[$l]), min(array_filter($last[$l])));
+                                        $result_show[$l][$keys[0]] = min(array_filter($last[$l]));
+                                    }
+
+                                    for ($i = 0; $i < count($result_show); $i++) { ?>
+                                        <?php
+                                        foreach ($result_show[$i] as $key => $value) {
+                                        ?>
+                                            <tr>
+                                                <td><?= $i ?>, <?= $key ?></td>
+                                                <td><?= $value ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <!-- end:: tabel -->
+
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <h2 class="panel-title">Map</h2>
+                            <?php
+                            $id    = array_keys($tujuan_terdekat, min($tujuan_terdekat));
+                            $query = $pdo->GetWhere('tb_bengkel', 'id_bengkel', $id[0]);
+                            $row   = $query->fetch(PDO::FETCH_OBJ);
+
+                            $field = [
+                                "id_bengkel",
+                                "id_users",
+                                "no_polisi",
+                                "no_rangka",
+                                "merk",
+                                "tipe",
+                                "tahun_buat",
+                                "tgl_pajak",
+                                "tgl_stnk",
+                                "keluhan",
+                                "latitude",
+                                "longitude"
+                            ];
+
+                            $value = [
+                                $id[0],
+                                $rowLog->id_users,
+                                $_POST['inpnopolisi'],
+                                $_POST['inpnorangka'],
+                                $_POST['inpmerk'],
+                                $_POST['inptipe'],
+                                $_POST['inptahunbuat'],
+                                $_POST['inptglpajak'],
+                                $_POST['inptglstnk'],
+                                $_POST['inpkeluhan'],
+                                $_POST['lat'],
+                                $_POST['lng'],
+                            ];
+
+                            $insert = $pdo->Insert("tb_pelayanan", $field, $value);
+                            ?>
+                        </header>
+                        <div class="panel-body">
+                            <div id="map" style="height: 400px;"></div>
+                        </div>
+                    </section>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
 </section>

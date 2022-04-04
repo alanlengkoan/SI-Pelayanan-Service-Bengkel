@@ -98,13 +98,13 @@ ob_start("minifier");
 $content = ( preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $_REQUEST['content']) ) ? str_replace('-', '_', $_REQUEST['content']) : $_REQUEST['content'];
 	if (file_exists('content/'.$content.'.php')) {
 		include_once 'atribut/head.php';
-		include_once 'atribut/navbar.php';
-		include_once 'atribut/sidebar.php';
+		include_once 'atribut/header.php';
 		switch ($content) {
 			case $content:
 			include_once 'content/'.str_replace('-', '_', $content).'.php';
 			break;
 		}
+		include_once 'atribut/footer.php';
 		include_once 'atribut/foot.php';
 	} else {
 		include_once 'content/403.html';

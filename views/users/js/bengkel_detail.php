@@ -5,6 +5,13 @@
     let longitude = $('#longitude');
     let nama = $('#nama');
 
+    var icon = {
+        url: "../../assets/img/pin.png", // url
+        scaledSize: new google.maps.Size(50, 50), // scaled size
+        origin: new google.maps.Point(0, 0), // origin
+        anchor: new google.maps.Point(0, 0) // anchor
+    };
+
     function initMap(response) {
         let infoWindow = new google.maps.InfoWindow();
 
@@ -19,7 +26,7 @@
             map: map,
             title: nama.val(),
             animation: google.maps.Animation.DROP,
-            icon: '../../assets/img/pin.png',
+            icon: icon,
         });
     }
 </script>

@@ -3,21 +3,19 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="HTML5 Admin Template" />
-    <meta name="description" content="Porto Admin - Responsive HTML5 Template">
-    <meta name="author" content="okler.net">
+    <meta name="keywords" content="" />
+    <meta name="description" content="">
+    <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <title>Sistem Informasi Jalur Terdekat Service Bengkel</title>
 
     <!-- icon -->
-    <link rel="icon" type="image/x-icon" href="../../assets/img/logo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../assets/landing_page/images/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../assets/admin/vendor/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="../../assets/admin/vendor/magnific-popup/magnific-popup.css" />
-    <link rel="stylesheet" type="text/css" href="../../assets/dist/css/map-icons.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/landing_page/css/style.css" />
 
     <style>
         .parsley-errors-list {
@@ -38,16 +36,9 @@
     }
     ?>
 
-
-    <link rel="stylesheet" href="../../assets/admin/stylesheets/theme.css" />
-    <link rel="stylesheet" href="../../assets/admin/stylesheets/skins/default.css" />
-    <link rel="stylesheet" href="../../assets/admin/stylesheets/theme-custom.css">
-
-    <script type="text/javascript" src="../../assets/dist/js/map-icons.js"></script>
-    <script type="text/javascript" src="../../assets/admin/vendor/modernizr/modernizr.js"></script>
-    <script rel="preload" type="text/javascript" src="../../assets/admin/vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="../../assets/landing_page/js/jquery.min.js"></script>
 
 </head>
 
 <body>
-    <section class="body" onload="getLocation()">
+    <section onload="getLocation()">

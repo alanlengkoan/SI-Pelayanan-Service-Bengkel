@@ -84,8 +84,8 @@
                         </header>
                         <div class="panel-body">
                             <h3>Keterangan</h3>
-                            <span class="map-icon map-icon-map-pin"></span>Lokasi Bengkel
-                            <span class="map-icon map-icon-male"></span>Lokasi User
+                            <i class="fa fa-map-pin"></i>&nbsp;Lokasi Bengkel
+                            <i class="fa fa-user"></i>&nbsp;Lokasi User
                             <div id="map" style="height: 400px;"></div>
                         </div>
                     </section>

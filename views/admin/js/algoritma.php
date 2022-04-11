@@ -27,6 +27,12 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
+        var icon = {
+            url: "../../assets/img/pin.png",
+            scaledSize: new google.maps.Size(30, 45),
+            origin: new google.maps.Point(0, 0),
+        };
+
         let tujuan = [];
         $.each(response, function(key, value) {
             var marker = new google.maps.Marker({
@@ -34,7 +40,7 @@
                 map: map,
                 title: value.nama,
                 animation: google.maps.Animation.DROP,
-                icon: '../../assets/img/pin.png',
+                icon: icon,
             });
 
             const titik = {

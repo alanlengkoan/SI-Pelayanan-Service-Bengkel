@@ -1,5 +1,4 @@
 <?php
-
 // ambil data bengkel
 $qry_bengkel = $pdo->GetAll('tb_bengkel', 'id_bengkel');
 $tujuan = [];
@@ -27,8 +26,8 @@ j = kolom => $j
 */
 $h = [];
 $e = [];
-for ($i = 0; $i < count($get); $i++) {
-    for ($j = 0; $j < count($get); $j++) {
+for ($i = 1; $i <= count($get); $i++) {
+    for ($j = 1; $j <= count($get); $j++) {
         if ($i === $j) {
             $h[$i][$j] = 0;
             $e[$i][$j] = 0;
@@ -40,9 +39,9 @@ for ($i = 0; $i < count($get); $i++) {
 }
 
 $result = [];
-for ($k = 0; $k < count($h); $k++) {
-    for ($i = 0; $i < count($h); $i++) {
-        for ($j = 0; $j < count($h); $j++) {
+for ($k = 1; $k <= count($h); $k++) {
+    for ($i = 1; $i <= count($h); $i++) {
+        for ($j = 1; $j <= count($h); $j++) {
             $h[$i][$j] = min($h[$i][$j], ($h[$i][$k] + $h[$k][$j]));
         }
     }
@@ -55,7 +54,6 @@ for ($k = 0; $k < count($h); $k++) {
         <h2>Algoritma</h2>
     </header>
 
-    <!-- begin:: tabel -->
     <section class="panel">
         <header class="panel-heading">
             <h2 class="panel-title">X0</h2>
@@ -66,16 +64,16 @@ for ($k = 0; $k < count($h); $k++) {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <?php for ($a = 0; $a < count($get); $a++) { ?>
+                            <?php for ($a = 1; $a <= count($get); $a++) { ?>
                                 <th><?= $a ?></th>
                             <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php for ($a = 0; $a < count($get); $a++) { ?>
+                        <?php for ($a = 1; $a <= count($get); $a++) { ?>
                             <tr>
                                 <td><?= $a ?></td>
-                                <?php for ($b = 0; $b < count($get); $b++) { ?>
+                                <?php for ($b = 1; $b <= count($get); $b++) { ?>
                                     <td><?= (is_infinite($e[$a][$b]) ? '&infin;' : $e[$a][$b]) ?></td>
                                 <?php } ?>
                             </tr>
@@ -87,7 +85,7 @@ for ($k = 0; $k < count($h); $k++) {
     </section>
 
 
-    <?php for ($g = 0; $g < count($result); $g++) { ?>
+    <?php for ($g = 1; $g <= count($result); $g++) { ?>
         <section class="panel">
             <header class="panel-heading">
                 <h2 class="panel-title">X<?= $g ?></h2>
@@ -98,16 +96,16 @@ for ($k = 0; $k < count($h); $k++) {
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <?php for ($a = 0; $a < count($get); $a++) { ?>
+                                <?php for ($a = 1; $a <= count($get); $a++) { ?>
                                     <th><?= $a ?></th>
                                 <?php } ?>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php for ($a = 0; $a < count($get); $a++) { ?>
+                            <?php for ($a = 1; $a <= count($get); $a++) { ?>
                                 <tr>
                                     <td><?= $a ?></td>
-                                    <?php for ($b = 0; $b < count($get); $b++) { ?>
+                                    <?php for ($b = 1; $b <= count($get); $b++) { ?>
                                         <td><?= (is_infinite($result[$g][$a][$b]) ? '&infin;' : $result[$g][$a][$b]) ?></td>
                                     <?php } ?>
                                 </tr>
@@ -125,7 +123,7 @@ for ($k = 0; $k < count($h); $k++) {
         </header>
         <div class="panel-body">
             <?php
-            for ($c = 0; $c < count($get); $c++) {
+            for ($c = 1; $c <= count($get); $c++) {
                 foreach ($result[count($get) - 1] as $key => $value) {
                     $last[$c][$key] = $result[count($get) - 1][$c][$key];
                 }
@@ -140,7 +138,7 @@ for ($k = 0; $k < count($h); $k++) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php for ($i = 0; $i < count($get); $i++) { ?>
+                    <?php for ($i = 1; $i <= count($get); $i++) { ?>
                         <?php
                         foreach ($result[count($get) - 1] as $key => $value) {
                         ?>
@@ -163,12 +161,12 @@ for ($k = 0; $k < count($h); $k++) {
                 </thead>
                 <tbody>
                     <?php
-                    for ($l = 0; $l < count($last); $l++) {
+                    for ($l = 1; $l <= count($last); $l++) {
                         $keys = array_keys(array_filter($last[$l]), min(array_filter($last[$l])));
                         $result_show[$l][$keys[0]] = min(array_filter($last[$l]));
                     }
 
-                    for ($i = 0; $i < count($result_show); $i++) { ?>
+                    for ($i = 1; $i <= count($result_show); $i++) { ?>
                         <?php
                         foreach ($result_show[$i] as $key => $value) {
                         ?>
@@ -182,7 +180,6 @@ for ($k = 0; $k < count($h); $k++) {
             </table>
         </div>
     </section>
-    <!-- end:: tabel -->
 
     <section class="panel">
         <header class="panel-heading">

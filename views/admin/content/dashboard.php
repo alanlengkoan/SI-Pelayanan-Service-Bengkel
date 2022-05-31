@@ -40,10 +40,11 @@
                         </div>
                         <div class="widget-summary-col">
                             <div class="summary">
-                                <h4 class="title">Users</h4>
+                                <h4 class="title">Member</h4>
                                 <div class="info">
                                     <?php
                                     $query = $pdo->GetAll('tb_users', 'id_users');
+                                    $query = $pdo->GetWhere('tb_users', 'level', 'users');
                                     $jml_users = $query->rowCount();
                                     ?>
                                     <strong class="amount"><?= $jml_users ?></strong>

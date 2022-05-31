@@ -26,6 +26,14 @@ if (!isset($_SESSION['token'])) {
 	<link rel="stylesheet" href="../assets/admin/stylesheets/theme-custom.css">
 	<script src="../assets/admin/vendor/modernizr/modernizr.js"></script>
 
+	<style>
+		html,
+		body {
+			background-color: #e76268;
+			width: 100%;
+		}
+	</style>
+
 </head>
 
 <body>
@@ -33,14 +41,14 @@ if (!isset($_SESSION['token'])) {
 	<section class="body-sign">
 		<div class="center-sign">
 			<a href="index" class="logo pull-left">
-				<h2>SI Service Bengkel Terdekat</h2>
+				<h2 style="color: #fff;">CALL SERVICE</h2>
 			</a>
 
 			<div class="panel panel-sign">
 				<div class="panel-title-sign mt-xl text-right">
-					<h2 class="title text-uppercase text-bold m-none"><i class="fa fa-user mr-xs"></i>Masuk</h2>
+					<h2 class="title text-uppercase text-bold m-none" style="background-color: #e76268;"><i class="fa fa-user mr-xs"></i>Masuk</h2>
 				</div>
-				<div class="panel-body">
+				<div class="panel-body" style="border-top-color: #e76268;">
 
 					<!-- begin:: notifikasi -->
 					<?php if (isset($_GET['akses'])) { ?>
@@ -90,12 +98,12 @@ if (!isset($_SESSION['token'])) {
 								</div>
 							</div>
 							<div class="col-sm-4 text-right">
-								<button type="submit" id="masuk" class="btn btn-primary hidden-xs">Login</button>
-								<button type="submit" id="masuk" class="btn btn-primary btn-block btn-lg visible-xs mt-lg">Login</button>
+								<button type="submit" id="masuk" class="btn btn-danger hidden-xs">Login</button>
+								<button type="submit" id="masuk" class="btn btn-danger btn-block btn-lg visible-xs mt-lg">Login</button>
 							</div>
 						</div>
 						<hr>
-						<p class="text-center">Belum punya akun? <a href="registrasi">Daftar disini!</a>
+						<p class="text-center">Belum punya akun? <a href="registrasi" style="color: #e76268;">Daftar disini!</a>
 					</form>
 				</div>
 			</div>
@@ -105,7 +113,7 @@ if (!isset($_SESSION['token'])) {
 				<script>
 					document.write(new Date().getFullYear());
 				</script>
-				<a href="https://alanlengkoan.netlify.app/" target="_blank"> AL</a> - Sistem Informasi Jalur Terdekat Service Bengkel.
+				<a href="https://alanlengkoan.netlify.app/" target="_blank" style="color: #fff;"> AL</a> - Sistem Informasi Jalur Terdekat Service Bengkel.
 			</p>
 		</div>
 	</section>

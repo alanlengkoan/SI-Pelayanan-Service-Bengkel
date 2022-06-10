@@ -35,7 +35,7 @@ if (isset($data['id_users']))
 		// untuk admin
 		$_SESSION['id_users'] = $data['id_users'];
 		$_SESSION['login']    = $data['login'];
-		header("location: ../views/users/dashboard");
+		header("location: ../views/users/index");
 	}
 }
 // fungsi untuk minifier html

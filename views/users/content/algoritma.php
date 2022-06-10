@@ -29,21 +29,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label">No. Rangka&nbsp;*</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" name="inpnorangka" id="inpnorangka" placeholder="Masukkan nomor rangka" required="required" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
                                     <label class="col-sm-4 control-label">Merk&nbsp;*</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" name="inpmerk" id="inpmerk" placeholder="Masukkan merk" required="required" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label">Tipe&nbsp;*</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" name="inptipe" id="inptipe" placeholder="Masukkan tipe" required="required" />
+                                        <select class="form-control" name="inpmerk" id="inpmerk">
+                                            <option value="">Pilih Merek</option>
+                                            <option value="Honda">Honda</option>
+                                            <option value="Yamaha">Yamaha</option>
+                                            <option value="Suzuki">Suzuki</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">

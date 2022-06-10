@@ -6,10 +6,10 @@ session_unset();
 session_destroy();
 
 // menghapus cookie
-if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
-    unset($_COOKIE['id']);
+if (isset($_COOKIE['id_users']) && isset($_COOKIE['key'])) {
+    unset($_COOKIE['id_users']);
     unset($_COOKIE['key']);
-    setcookie('id', '', time() - 3600, '/', $_SERVER['SERVER_NAME']);
+    setcookie('id_users', '', time() - 3600, '/', $_SERVER['SERVER_NAME']);
     setcookie('key', '', time() - 3600, '/', $_SERVER['SERVER_NAME']);
 }
 

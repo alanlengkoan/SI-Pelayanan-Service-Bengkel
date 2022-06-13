@@ -1,6 +1,6 @@
 <?php
 $id  = $_GET['id_pelayanan'];
-$sql = "SELECT p.id_pelayanan, p.no_polisi, p.no_rangka, p.merk, p.tipe, p.tahun_buat, p.tgl_pajak, p.tgl_stnk, p.keluhan, p.latitude AS users_latitude, p.longitude AS users_longitude, b.nama, b.latitude AS bengkel_latitude, b.longitude AS bengkel_longitude FROM tb_pelayanan AS p LEFT JOIN tb_bengkel AS b ON p.id_bengkel = b.id_bengkel WHERE p.id_pelayanan = '$id'";
+$sql = "SELECT p.id_pelayanan, p.no_polisi, p.merk, p.tahun_buat, p.tgl_pajak, p.tgl_stnk, p.keluhan, p.latitude AS users_latitude, p.longitude AS users_longitude, b.nama, b.latitude AS bengkel_latitude, b.longitude AS bengkel_longitude FROM tb_pelayanan AS p LEFT JOIN tb_bengkel AS b ON p.id_bengkel = b.id_bengkel WHERE p.id_pelayanan = '$id'";
 $qry = $pdo->Query($sql);
 $row = $qry->fetch(PDO::FETCH_OBJ);
 ?>
@@ -29,21 +29,9 @@ $row = $qry->fetch(PDO::FETCH_OBJ);
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">No. Rangka&nbsp;*</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" value="<?= $row->no_rangka ?>" readonly="readonly" />
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="col-sm-4 control-label">Merk&nbsp;*</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" value="<?= $row->merk ?>" readonly="readonly" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Tipe&nbsp;*</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" value="<?= $row->tipe ?>" readonly="readonly" />
                     </div>
                 </div>
                 <div class="form-group">

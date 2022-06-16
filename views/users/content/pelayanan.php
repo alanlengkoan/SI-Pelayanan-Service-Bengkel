@@ -24,7 +24,7 @@
                         <tbody>
                             <?php
                             $idu = $rowLog->id_users;
-                            $sql = "SELECT p.id_pelayanan, p.no_polisi, p.merk, p.tahun_buat, p.tgl_pajak, p.tgl_stnk, p.keluhan, p.latitude, p.longitude, b.nama FROM tb_pelayanan AS p LEFT JOIN tb_bengkel AS b ON p.id_bengkel = b.id_bengkel WHERE p.id_users = '$idu'";
+                            $sql = "SELECT p.id_pelayanan, p.no_polisi, p.merk, p.tahun_buat, p.keluhan, p.latitude, p.longitude, b.nama FROM tb_pelayanan AS p LEFT JOIN tb_bengkel AS b ON p.id_bengkel = b.id_bengkel WHERE p.id_users = '$idu'";
                             $qry = $pdo->Query($sql);
                             $sum = $qry->rowCount();
                             $no = 1;

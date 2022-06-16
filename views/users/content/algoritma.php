@@ -46,18 +46,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label">Tanggal Pajak&nbsp;*</label>
-                                    <div class="col-sm-8">
-                                        <input type="date" class="form-control" name="inptglpajak" id="inptglpajak" placeholder="Masukkan tanggal pajak" required="required" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label">Tanggal STNK&nbsp;*</label>
-                                    <div class="col-sm-8">
-                                        <input type="date" class="form-control" name="inptglstnk" id="inptglstnk" placeholder="Masukkan tanggal stnk" required="required" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
                                     <label class="col-sm-4 control-label">Keluhan&nbsp;*</label>
                                     <div class="col-sm-8">
                                         <textarea class="form-control" name="inpkeluhan" id="inpkeluhan" placeholder="Masukkan keluhan"></textarea>

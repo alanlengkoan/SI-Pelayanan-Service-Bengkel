@@ -205,8 +205,6 @@ for ($k = 1; $k <= count($h); $k++) {
                                 "no_polisi",
                                 "merk",
                                 "tahun_buat",
-                                "tgl_pajak",
-                                "tgl_stnk",
                                 "keluhan",
                                 "latitude",
                                 "longitude"
@@ -218,8 +216,6 @@ for ($k = 1; $k <= count($h); $k++) {
                                 $_POST['inpnopolisi'],
                                 $_POST['inpmerk'],
                                 $_POST['inptahunbuat'],
-                                $_POST['inptglpajak'],
-                                $_POST['inptglstnk'],
                                 $_POST['inpkeluhan'],
                                 $_POST['lat'],
                                 $_POST['lng'],

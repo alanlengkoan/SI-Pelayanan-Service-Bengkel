@@ -4,8 +4,10 @@
     var untukLihatPassword = function() {
         $(document).on('click', '#lihatpassword', function() {
             if ($(this).is(':checked')) {
+                $('#inppassword1').attr('type', 'text');
                 $('#inppassword2').attr('type', 'text');
             } else {
+                $('#inppassword1').attr('type', 'password');
                 $('#inppassword2').attr('type', 'password');
             }
         });

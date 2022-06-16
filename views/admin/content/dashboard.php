@@ -1,6 +1,6 @@
 <section role="main" class="content-body">
     <header class="page-header">
-        <h2>Dashboard</h2>
+        <h2>Call Service</h2>
     </header>
 
     <div class="row">
